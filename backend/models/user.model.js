@@ -14,6 +14,10 @@ const userSchema = mongoose.Schema( {
         type: String,
         required: true,
     },
+    bio: {
+        type: String, // You can use `String` for text fields
+        default: "" // Default value if not provided
+    },
     lastLogin: {
         type: Date,
         default: Date.now

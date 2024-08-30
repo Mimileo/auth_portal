@@ -3,16 +3,19 @@ import { motion } from "framer-motion";
 import { useAuthStore } from "../store/authStore";
 import { useNavigate, useParams } from "react-router-dom";
 import Input from "../components/Input";
-import { Lock } from "lucide-react";
+import { User } from "lucide-react";
 import toast from "react-hot-toast";
 import FormButton from "../components/FormButton";
 
+import { ArrowLeft, Loader, Mail } from "lucide-react";
 
-function ResetPasswordPage() {
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+function UpdateProfilePage() {
+    const [name, setName] = useState("");
+    const  [email, setEmail ] = useState("");  
+    const  [bio, setBio ] = useState("");  
+   // const [confirmPassword, setConfirmPassword] = useState("");
 
-    const { resetPassword, error, isLoading, message } = useAuthStore();
+    const { updateProfile, error, isLoading, message, user} = useAuthStore();
 
     const {token} = useParams();
     const navigate = useNavigate();
@@ -22,23 +25,29 @@ function ResetPasswordPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(password !== confirmPassword) {
+       /* if(password !== confirmPassword) {
             alert("Password do not match");
             return;
-        }
+        }*/
         try {
-            await resetPassword(token, password);
 
-            toast.success("Password reset successfully, redirecting to login page...");
-			setTimeout(() => {
-				navigate("/login");
-			}, 2000);
+            const profileData = { name, email, bio };
+        
+            // Pass the profileData to the updateProfile function
+            const response = await updateProfile(token, profileData);
+            
+            toast.success(`${response.message}, redirecting to your Dash...`);
+		/*	setTimeout(() => {
+				navigate("/");
+			}, 2000);*/
 
         } catch (error) {
             console.error(error);
-			toast.error(error.message || "Error resetting password");
+			toast.error(error.message || "Error updating profile");
         }
     }
+
+  
   
    return (
     <motion.div
@@ -49,7 +58,7 @@ function ResetPasswordPage() {
     >
         <div className='p-8'>
             <h2 className='text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text'>
-				Reset Password
+				Update Your Profile
 			</h2>
 				
             {error && <p className='text-red-500 text-sm mb-4'>{error}</p>}
@@ -57,15 +66,38 @@ function ResetPasswordPage() {
 
             <form onSubmit={handleSubmit}>
                 <Input
-					icon={Lock}
-					type='password'
-					placeholder='New Password'
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					required
+					icon={User}
+					type='text'
+					placeholder={user?.name || "Full Name"}
+					value={name}
+					onChange={(e) => setName(e.target.value)}
+					
 				/>
 
-				<Input
+              
+                <Input
+                    icon={Mail}
+                    type="email"
+                    placeholder={user?.email || "Email Address"}
+                    value={email}
+                    onChange={ (e) => setEmail(e.target.value) }
+                />
+
+                <Input
+                    icon={Mail}
+                    type="text"
+                    placeholder={user?.bio || "Bio - Say a bit about yourself!"}
+                    value={bio}
+                    onChange={ (e) => setBio(e.target.value) }
+                />
+
+
+                
+
+				
+                    {/*
+
+                    <Input
 					icon={Lock}
 					type='password'
 					placeholder='Confirm New Password'
@@ -73,7 +105,7 @@ function ResetPasswordPage() {
 					onChange={(e) => setConfirmPassword(e.target.value)}
 					required
 				/>
-                    {/*TODO: create 
+                    TODO: create 
                     <Button
                     onClick=""
                     /> compnent
@@ -95,7 +127,7 @@ function ResetPasswordPage() {
                     className='w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-200'
                     type='submit'
                     disabled={isLoading}
-                    text={isLoading ? "Resetting..." : "Set New Password"}
+                    text={isLoading ? "Updating..." : "Update Profile"}
                 />
 
 
@@ -105,8 +137,7 @@ function ResetPasswordPage() {
         </div>
 
     </motion.div>
-   )
-  
+  )
 }
 
-export default ResetPasswordPage;
+export default UpdateProfilePage

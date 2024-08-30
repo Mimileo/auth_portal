@@ -187,6 +187,35 @@ export const resetPassword = async (req, res) => {
 	}
 };
 
+export const updateProfile = async (req, res) => {
+    try {
+        // fetch user from db and send as a response
+        const user = await User.findById(req.userId).select("-password");
+
+        
+        if (!user) {
+			return res.status(400).json({ success: false, message: "User not found" });
+		}
+
+		 // Update user fields from request body
+		 const { name, email, bio } = req.body;
+		 if (name) user.name = name;
+		 if (email) user.email = email;
+		 if (bio) user.bio = bio; 
+
+		 await user.save();
+
+        // upon success send the user
+		
+		res.status(200).json({ success: true, message: "Profile updated successfully", user });
+
+    } catch (error) {
+        console.log("Error in updateProfile ", error);
+        res.status(400).json({ success: false, message: error.message });
+    }
+}
+
+
 export const checkAuth = async (req, res) => {
     try {
         // fetch user from db and send as a response
@@ -205,4 +234,6 @@ export const checkAuth = async (req, res) => {
         res.status(400).json({ success: false, message: error.message });
     }
 }
+
+
 

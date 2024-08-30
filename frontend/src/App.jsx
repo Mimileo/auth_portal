@@ -12,6 +12,8 @@ import EmailVerificationPage from './pages/EmailVerificationPage';
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from './store/authStore';
 import { useEffect } from 'react';
+import PageNotFound from './pages/PageNotFound';
+import UpdateProfilePage from './pages/UpdateProfilePage';
 
 // protect routes that require authenctication
 const ProtectedRoute = ({children}) => {
@@ -80,6 +82,12 @@ function App() {
             <DashboardPage />
           </ProtectedRoute>
         } />
+
+        <Route path="/update-profile" element={
+          <ProtectedRoute>  { /* unauthenticated users cannot visit this protected route */}
+            <UpdateProfilePage />
+          </ProtectedRoute>
+        } />
         <Route path="/signup" element={
           <RedirectAuthenicatedUser>
             <SignUpPage />
@@ -106,7 +114,8 @@ function App() {
             }
           />
 
-        { /* Catch all routes - todo 404 page component*/}
+        { /* Catch all routes - todo 404 page component
+        
         <Route 
             path='*'
 
@@ -114,6 +123,13 @@ function App() {
               <Navigate to='/' replace />
             }
           />
+          */}
+
+        <Route path="*" element={ 
+         
+            <PageNotFound />
+         } />
+        
 
       </Routes>
 

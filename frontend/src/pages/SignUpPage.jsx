@@ -5,6 +5,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordMeter from "../components/PasswordMeter";
 import { useAuthStore } from "../store/authStore";
+import FormButton from "../components/FormButton";
+//import { checkPasswordCriteria } from "../utils/passwordUtils";  
+
 
 const SignUpPage = () => {
   const  [name, setName ] = useState("");  
@@ -19,6 +22,7 @@ const SignUpPage = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+
 
     try {
         await signup(email, password, name);
@@ -71,7 +75,9 @@ const SignUpPage = () => {
 
                 <PasswordMeter password={password} />
 
-                <motion.button
+
+                {/*
+                 <motion.button
                     className='mt-5 w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
                     font-bold rounded-lg shadow-lg hover:from-green-600
                     hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2
@@ -85,6 +91,24 @@ const SignUpPage = () => {
                     { isLoading ? <Loader className="animate-spin mx-auto" size={24}/> : "Sign Up"}
                 </motion.button>
                 
+                */}
+               
+                
+
+                <FormButton 
+                    className='mt-5 w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
+                    font-bold rounded-lg shadow-lg hover:from-green-600
+                    hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2
+                    focus:ring-offset-gray-900 transition duration-200' 
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}   
+                    type="submit"    
+                    disabled={isLoading}
+                    
+                    text={ isLoading ? <Loader className="animate-spin mx-auto" size={24}/> : "Sign Up"}
+                
+                />
+
             </form>
             <div className="px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center">
                 <p className="text-sm text-gray-400">

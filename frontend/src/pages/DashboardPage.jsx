@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { formatDate } from "../utils/date";
 import { useAuthStore } from "../store/authStore";
+import FormButton from "../components/FormButton";
 
 const DashboardPage = () => {
 	const { user, logout } = useAuthStore();
@@ -27,8 +28,8 @@ const DashboardPage = () => {
 					transition={{ delay: 0.2 }}
 				>
 					<h3 className="text-xl font-semibold text-green-400 mb-3">Profile Information</h3>
-					<p className="text-gray-300">Name: {user.name}</p>
-					<p className="text-gray-300">Email:{user.email}</p>
+					<p className="text-gray-300"><span className='font-bold'>Name: </span>  {user.name}</p>
+					<p className="text-gray-300"><span className='font-bold'>Email: </span> {user.email}</p>
 
 				</motion.div>
 
@@ -60,6 +61,8 @@ const DashboardPage = () => {
 				transition={{ delay: 0.6 }}
 				className='mt-4'
 			>
+				{ /*
+
 				<motion.button
 					whileHover={{ scale: 1.05 }}
 					whileTap={{ scale: 0.95 }}
@@ -70,6 +73,19 @@ const DashboardPage = () => {
 				>
 					Logout
 				</motion.button>
+
+				
+				*/ }
+			
+				<FormButton 
+					whileHover={{ scale: 1.05 }}
+					whileTap={{ scale: 0.95 }}
+					onClick={handleLogout}
+					text="Logout"
+					className='w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
+				font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-emerald-700
+				 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900'
+				/>
 			</motion.div>	
 		</motion.div>
   )
