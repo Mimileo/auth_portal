@@ -66,7 +66,7 @@ export const useAuthStore = create((set) => ({
 			const response = await axios.get(`${API_URL}/check-auth`);
 			set({ user: response.data.user, isAuthenticated: true, isCheckingAuth: false });
 		} catch (error) {
-			set({ error: error.response?.data?.message, isCheckingAuth: false, isAuthenticated: false });
+			set({ error: null, isCheckingAuth: false, isAuthenticated: false });
 		}
 	},
     updateProfile: async (token, profileData) => {
