@@ -6,6 +6,8 @@ import authRoutes from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
+import cloudinary from './config/cloudinary.js';
+
 
 dotenv.config();
 

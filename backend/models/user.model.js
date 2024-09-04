@@ -30,6 +30,10 @@ const userSchema = mongoose.Schema( {
     resetPasswordExpiresAt: Date,
     verificationToken: String,   
     verificationTokenExpiresAt: Date, 
+    profilePicture: {
+        type: String, // Store the URL or path of the profile picture
+        default: "",  // Set a default empty string if no image is provided
+      },
 }, {timestamps:true} )
 
 

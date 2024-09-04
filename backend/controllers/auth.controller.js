@@ -9,8 +9,21 @@ import {
 	sendWelcomeEmail,
 } from "../mailtrap/emails.js";
 import { User } from "../models/user.model.js";
+import cloudinary from '../config/cloudinary.js'; // Import the Cloudinary configuration
+import streamifier from 'streamifier';
 
-
+const uploadFromBuffer = (buffer) => {
+	return new Promise((resolve, reject) => {
+	  const stream = cloudinary.uploader.upload_stream((error, result) => {
+		if (result) {
+		  resolve(result);
+		} else {
+		  reject(error);
+		}
+	  });
+	  streamifier.createReadStream(buffer).pipe(stream);
+	});
+  };
 
 
 export const signup = async (req, res) => {
@@ -189,7 +202,7 @@ export const resetPassword = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
     try {
-        // fetch user from db and send as a response
+       
         const user = await User.findById(req.userId).select("-password");
 
         
@@ -202,6 +215,11 @@ export const updateProfile = async (req, res) => {
 		 if (name) user.name = name;
 		 if (email) user.email = email;
 		 if (bio) user.bio = bio; 
+
+		 if (req.file) {
+			const result = await uploadFromBuffer(req.file.buffer);
+			user.profilePicture = result.secure_url; 
+		 }
 
 		 await user.save();
 

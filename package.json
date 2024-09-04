@@ -14,16 +14,28 @@
   "type": "module",
   "license": "ISC",
   "dependencies": {
+    "@types/quill": "^2.0.14",
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.41.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "crypto": "^1.0.1",
+    "dompurify": "^3.1.6",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mailtrap": "^3.4.0",
-    "mongoose": "^8.5.2"
+    "mongoose": "^8.5.2",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "quill": "^2.0.2",
+    "react-quill": "^2.0.0",
+    "slate": "^0.103.0",
+    "slate-history": "^0.109.0",
+    "slate-hyperscript": "^0.100.0",
+    "slate-react": "^0.110.0",
+    "streamifier": "^0.1.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"

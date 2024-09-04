@@ -1,0 +1,7 @@
+.dash-bio a {
+    color: rgb(74, 222, 128);
+}
+
+.dash-bio a:hover {
+    color: rgb(177, 255, 206);;
+}

@@ -1,0 +1,122 @@
+.quill-editor-container {
+   
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 0.5rem; 
+    transition: border-color 0.2s ease, box-shadow 0.2s ease; 
+}
+
+
+.ql-container {
+    background-color: transparent; 
+    color: #ffffff; 
+}
+
+
+
+
+/*  toolbar */
+.ql-toolbar {
+    background-color: rgba(24, 24, 24, 0.5); 
+    border-radius: 0.5rem 0.5rem 0 0; 
+}
+
+
+
+.ql-toolbar .ql-stroke {
+    fill: none;
+    stroke: #fff;
+}
+
+.ql-toolbar .ql-fill {
+    fill: #fff;
+    stroke: none;
+}
+.ql-picker-options {
+    background-color: #374151 !important;
+}
+
+.ql-toolbar .ql-picker {
+    color: #fff;
+}
+
+
+.ql-snow.ql-toolbar button:hover, .ql-stroke svg, .ql-snow.ql-stroke:focus, .ql-snow.ql-stroke:hover, .ql-snow .ql-toolbar button:hover, .ql-snow.ql-toolbar button:focus, .ql-snow .ql-toolbar button:focus, .ql-snow.ql-toolbar button.ql-active, .ql-snow .ql-toolbar button.ql-active, .ql-snow.ql-toolbar .ql-picker-label:hover, .ql-snow .ql-toolbar .ql-picker-label:hover, .ql-snow.ql-toolbar .ql-picker-label.ql-active, .ql-snow .ql-toolbar .ql-picker-label.ql-active, .ql-snow.ql-toolbar .ql-picker-item:hover, .ql-snow .ql-toolbar .ql-picker-item:hover, .ql-snow.ql-toolbar .ql-picker-item.ql-selected, .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+    color: #10b981 !important; /* Hover text color (emerald green) */
+    fill: #10b981 !important;  /* Hover icon color (emerald green) */
+    stroke: #10b981 !important;  
+    background-color: transparent !important;
+}
+
+button:hover .ql-stroke,
+.ql-picker-label:hover .ql-stroke {
+  fill: none;
+  stroke: #10b981 !important;
+}
+
+.ql-active .ql-stroke {
+  fill: none;
+  stroke: #10b981 !important;
+}
+
+button:hover .ql-fill,
+.ql-picker-label:hover .ql-fill {
+  fill: #10b981 !important;
+  stroke: none;
+}
+
+.ql-active .ql-fill {
+  fill: #10b981 !important;
+  stroke: none;
+}
+
+/* Headings */
+.ql-editor h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.ql-editor h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Paragraph */
+.ql-editor p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Preserve line breaks */
+.ql-editor pre,
+.ql-editor p {
+    white-space: pre-wrap; /* Ensures that line breaks are preserved */
+}
+
+/* Customize other tags as needed */
+.ql-editor h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.ql-editor h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.ql-editor p {
+    font-size: 1rem;
+    margin-bottom: 1rem ;
+}
+
+
+
+
+.ql-toolbar button {
+    color: #ffffff;
+}
+
+.ql-toolbar button:hover {
+    color: #10b981; 
+}
+
+
